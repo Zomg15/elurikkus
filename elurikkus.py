@@ -77,17 +77,33 @@ root = Tk()
 #pildiobjekt = None
 #canvas.create_image(20, 20, anchor=NW, image=pildiobjekt)
 
-variandid = [ttk.Button(root, text="Vastus 1").grid(row=1, column=0, padx = 20, pady = 20), ttk.Button(root, text="Vastus 2").grid(row=1, column=1, padx = 20, pady = 20), ttk.Button(root, text="Vastus 3").grid(row=1, column=2, padx = 20, pady = 20)]
+variandid = [ttk.Button(root, text="Vastus 1", command = lambda: vali_vastus(0)),
+             ttk.Button(root, text="Vastus 2", command = lambda: vali_vastus(1)),
+             ttk.Button(root, text="Vastus 3", command = lambda: vali_vastus(2))]
+variandid[0].grid(row=2, column=0, padx = 20, pady = 20)
+variandid[1].grid(row=2, column=1, padx = 20, pady = 20)
+variandid[2].grid(row=2, column=2, padx = 20, pady = 20)
+# Miskipärast nõuab tkinter tekstile oma eraldi muutujat
+tulemus_tekst = StringVar()
+ttk.Label(root, textvariable=tulemus_tekst).grid(row=0, column=1)
 
 headers = {'user-agent': 'elurikkus/0.0.1'}
+# Õige variant peab olema ka funktsioonist väljaspoolt kättesaadav (kõik on globalid, sest ma enam ei viitsi)
+õige_variant = -1
+vastus = ()
 def uuenda():
     # Allikas: https://requests.readthedocs.io/en/latest/user/quickstart/
     # API info: https://www.mediawiki.org/wiki/API:REST_API
     
+    # https://docs.python.org/3/faq/programming.html#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value
+    global õige_variant
+    global vastus
+    
     vastused = random.sample(taimenimed, k=4)
     vastus = vastused[0]
     valed_vastused = vastused[1:3]
-    print(vastus[1])
+    print(vastus)
+    print(valed_vastused)
     
     tulemused = requests.get(f"https://commons.wikimedia.org/w/rest.php/v1/search/page?q={vastus[1]}&type=image&filemime=jpeg&haslicense=unrestricted", headers=headers)
     json_tulemused = tulemused.json()
@@ -122,16 +138,35 @@ def uuenda():
     pildiobjekt = ImageTk.PhotoImage(pilt)
     # ChatGPT
     canvas.config(width = pilt.width, height = pilt.height)
-    canvas.grid(row=0, column=1)
+    canvas.grid(row=1, column=1)
     canvas.create_image(0, 0, anchor="nw", image=pildiobjekt)
     canvas.image = pildiobjekt
     
-    #õige_variant = random.randint(0, 2)
-    #variandid[õige_variant].config(text=vastus[0])
+    # Muudab nuppude tekstid
+    õige_variant = random.randint(0, 2)
+    print(f"õige variant: {õige_variant}")
+    valed_variandid = [0, 1, 2]
+    valed_variandid.remove(õige_variant)
+    variandid[õige_variant].config(text=vastus[0])
+    variandid[valed_variandid[0]].config(text=valed_vastused[0][0])
+    variandid[valed_variandid[1]].config(text=valed_vastused[1][0])
     
 canvas = Canvas(root)
 #canvas.pack(fill="both", expand=True)
 uuenda()
+
+def vali_vastus(valik):
+    print(f"Valitud {valik}, õige on {õige_variant}")
+    if valik == õige_variant:
+        tulemus_tekst.set("Õige vastus! Laen järgmise pildi...")
+    else:
+        tulemus_tekst.set(f"Vale vastus! Taim oli {vastus[0]}.")
+    # ChatGPT-lt: värskendab kasutajaliidest
+    root.update_idletasks()
+    
+    uuenda()
+    tulemus_tekst.set("")
+    
 
 #canvas.create_image(0, 0, anchor=NW, image=pildiobjekt)
 
