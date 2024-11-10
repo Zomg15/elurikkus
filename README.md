@@ -1,93 +1,33 @@
-Siin on professionaalne GitHubi README faili näidis elurikkuse programmeerimise projekti jaoks:
+Elurikkuse projekti ReadMe:
 
 ```markdown
-# Elurikkuse Programmeerimise Projekt
+# Elurikkuse Programmeerimise Projekt, Võru Gümnaasium, 12R, Kirill Kongo & Markel Hanimägi
 
-## Ülevaade
+Ülevaade:
 
-Elurikkuse Programmeerimise Projekt (EPP) on avatud lähtekoodiga algatus, mille eesmärk on arendada ja toetada tööriistu ning ressurse elurikkuse ja ökoloogia uurimiseks ja kaitsmiseks. Projekt koondab erinevaid programmeerimise ja andmeanalüüsi tehnikaid, et edendada teadlikkust ja kaitset bioloogilisest mitmekesisusest.
+Elurikkuse Programmeerimise Projekt (EPP) on avatud lähtekoodiga algatus, mille eesmärk on luua programm, mis kasutab vabalt avatud allikate (nt wikimedia) andmeid, esitades kasutajale pildi koos valikuvariantidega (1 on õige) ning teavitab kasutajat kas tgeemist oli õige või vale valitud vastusega.
 
-## Sisukord
+Funktsionaalsus:
 
-- [Eesmärk](#eesmärk)
-- [Funktsionaalsus](#funktsionaalsus)
-- [Installimine](#installimine)
-- [Kasutamine](#kasutamine)
-- [Panustamine](#panustamine)
-- [Krediteerimine](#krediteerimine)
-- [Kontakt](#kontakt)
-
-## Eesmärk
-
-EPP eesmärk on:
-
-- Luua tööriistad elurikkuse andmete analüüsimiseks.
-- Arendada visualiseerimise lahendusi, mis aitavad andmeid paremini mõista.
-- Julgustada teadusuuringute ja hariduse toetamiseks avatud lähtekoodi lahendusi.
-
-## Funktsionaalsus
-
-- **Andmete kogumine**: Kogub elurikkuse andmeid erinevatest allikatest.
-- **Analüüsitööriistad**: Pakub statistilisi ja ökoloogilisi analüüse.
-- **Visualiseerimine**: Interaktiivsed graafikud ja kaartide lahendused andmete esitamiseks.
-- **API**: Lihtne juurdepääs projektiga seotud andmetele ja funktsionaalsusele.
-
-## Installimine
-
-Kloonige see repo oma masinasse:
-
-```bash
-git clone https://github.com/kasutajanimi/elurikkuse-projekt.git
+- Programmi käik, algatus ja funktsioonid on esitatud kõigile avatud esitlusel:  https://www.canva.com/design/DAGVCal-c7o/IaQ7g7bFMo6LC4kMmquL1Q/edit?utm_content=DAGVCal-c7o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 ```
 
-Liikuge projekti kausta:
+Installeerimine:
 
-```bash
-cd elurikkuse-projekt
-```
-
-Installige vajalikud sõltuvused:
+Installige vajalikud moodulid:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Kasutamine
+Lisainformatsiooni ja näidiskasutuste leidmiseks vaadake esitlust - eelnevalt esitatud.
 
-Projekti kasutamine algab järgmiste käskude käivitamisega:
+Autoriõigused
 
-```bash
-python main.py
-```
-
-Lisainformatsiooni ja näidiskasutuste leidmiseks vaadake [dokumentatsiooni](docs/).
-
-## Panustamine
-
-Panustamine on teretulnud! Järgige palun järgmisi samme:
-
-1. Kloonige repo.
-2. Looge uus haru (`feature/teie-uuendus`).
-3. Tehke oma muudatused.
-4. Esitage pull request.
-
-## Krediteerimine
-
-Projekti arendamisel toetavad meid järgmised organisatsioonid ja isikud:
-
-- [Organisatsioon 1](https://link.org)
-- [Organisatsioon 2](https://link.org)
-
-## Kontakt
-
-Küsimuste ja tagasiside korral võtke meiega ühendust:
-
-- E-post: [teie@email.com](mailto:teie@email.com)
-- GitHub: [Kasutajanimi](https://github.com/kasutajanimi)
+- vabalt kasutatav programm, eeldame viitamist projekti autorile
 
 ---
 
-Aitäh, et olete huvitatud elurikkuse kaitsmisest ja meie projektist!
+Aitäh, et olete huvitatud elurikkuse projektist!
 ```
 
-Saate kohandada sisu vastavalt oma projekti vajadustele ja lisada konkreetseid funktsioone või nõudeid.
