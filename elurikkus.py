@@ -340,6 +340,7 @@ taimenimed = [("pleurokokk", "Pleurococcus vulgaris"),
 
 # Õpikust: https://web.htk.tlu.ee/digitaru/tarkvara2/chapter/tkinteri-vidinad/
 root = Tk()
+root.configure(bg = '#83a68c')
 
 # Allikas: ChatGPT
 #root.state("zoomed")
@@ -354,12 +355,28 @@ root = Tk()
 #pildiobjekt = None
 #canvas.create_image(20, 20, anchor=NW, image=pildiobjekt)
 
-variandid = [ttk.Button(root, text="Vastus 1", command = lambda: vali_vastus(0)),
-             ttk.Button(root, text="Vastus 2", command = lambda: vali_vastus(1)),
-             ttk.Button(root, text="Vastus 3", command = lambda: vali_vastus(2))]
-variandid[0].grid(row=2, column=0, padx = 20, pady = 20)
-variandid[1].grid(row=2, column=1, padx = 20, pady = 20)
-variandid[2].grid(row=2, column=2, padx = 20, pady = 20)
+# Põhialused: https://tkdocs.com/tutorial/styles.html
+style = ttk.Style()
+style.configure('Custom.TButton',
+                font = ('League Spartan', 11, 'bold'),
+                foreground = '#4b964a',
+                background = '#4b964a',
+                borderwidth = 2,
+                padding = 10)
+style.map('Custom.TButton',
+          background = [('active', '#aaf0a8')],
+          relief = [('pressed', 'sunken')])
+
+variandid = [
+    ttk.Button(root, text="Vastus 1", style="Custom.TButton", command=lambda: vali_vastus(0)),
+    ttk.Button(root, text="Vastus 2", style="Custom.TButton", command=lambda: vali_vastus(1)),
+    ttk.Button(root, text="Vastus 3", style="Custom.TButton", command=lambda: vali_vastus(2))
+]
+
+variandid[0].grid(row=2, column=0, padx=20, pady=20)
+variandid[1].grid(row=2, column=1, padx=20, pady=20)
+variandid[2].grid(row=2, column=2, padx=20, pady=20)
+
 # Miskipärast nõuab tkinter tekstile oma eraldi muutujat
 tulemus_tekst = StringVar()
 ttk.Label(root, textvariable=tulemus_tekst).grid(row=0, column=1)
