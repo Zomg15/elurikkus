@@ -4,7 +4,7 @@ import re
 # Õpikust: https://web.htk.tlu.ee/digitaru/tarkvara2/chapter/tkinteri-vidinad/
 from tkinter import *
 from tkinter import ttk
-from PIL import ImageTk, Image, ImageOps
+from PIL import ImageTk, Image
 # Leheküljelt https://requests.readthedocs.io/en/latest/user/quickstart/
 from io import BytesIO
 # ChatGPT-st
@@ -396,8 +396,8 @@ def uuenda():
     vastused = random.sample(taimenimed, k=4)
     vastus = vastused[0]
     valed_vastused = vastused[1:3]
-    print(vastus)
-    print(valed_vastused)
+    #print(vastus)
+    #print(valed_vastused)
     
     tulemused = requests.get(f"https://commons.wikimedia.org/w/rest.php/v1/search/page?q={vastus[1]}&type=image&filemime=jpeg&haslicense=unrestricted", headers=headers)
     json_tulemused = tulemused.json()
@@ -407,7 +407,7 @@ def uuenda():
     
     # Andmestruktuur: "pages" -> tulemuste järjend (valib suvalise) -> "key" (viib URL-ini)
     pildi_id = random.choice(jpeg_pildid)["key"]
-    print(pildi_id)
+    #print(pildi_id)
     
     # URL-il on kindlad nõudmised
     pildi_id.replace(" ", "_")
@@ -422,11 +422,11 @@ def uuenda():
     url = re.findall(r"upload\.wikimedia\.org\/wikipedia\/commons\/[^t]\/.{2}\/", pildi_link.text)[0]
     
     # Lõpuks leiame pildi ning muudame selle PIL mooduliga Pythonile sobivaks
-    print(f"Image URL: https://{url}{failinimi}")
+    #print(f"Image URL: https://{url}{failinimi}")
     pilt_raw = requests.get(f"https://{url}{failinimi}", headers=headers)
-    print(pilt_raw.content)
+    #print(pilt_raw.content)
     pilt = Image.open(BytesIO(pilt_raw.content)) # Saadud https://requests.readthedocs.io/en/latest/user/quickstart/
-    print(f"Kõrgus: {pilt.height}")
+    #print(f"Kõrgus: {pilt.height}")
     vähendustegur = 500 / pilt.height
     pilt = pilt.resize((round(pilt.width * vähendustegur), round(pilt.height * vähendustegur)))
     pildiobjekt = ImageTk.PhotoImage(pilt)
@@ -438,7 +438,7 @@ def uuenda():
     
     # Muudab nuppude tekstid
     õige_variant = random.randint(0, 2)
-    print(f"õige variant: {õige_variant}")
+    #print(f"õige variant: {õige_variant}")
     valed_variandid = [0, 1, 2]
     valed_variandid.remove(õige_variant)
     variandid[õige_variant].config(text=vastus[0])
@@ -450,7 +450,7 @@ canvas = Canvas(root)
 uuenda()
 
 def vali_vastus(valik):
-    print(f"Valitud {valik}, õige on {õige_variant}")
+    #print(f"Valitud {valik}, õige on {õige_variant}")
     if valik == õige_variant:
         tulemus_tekst.set("Õige vastus! Laen järgmise pildi...")
     else:
